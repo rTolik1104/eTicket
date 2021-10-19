@@ -1,0 +1,47 @@
+﻿@model List<Order>
+
+@{ 
+    ViewData["Title"] = "All Orders";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <p>
+            <h1>List of all your orders</h1>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Order Id</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>User</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var order in Model)
+                {
+                    <tr>
+                        <td class="align-middle">@order.Id</td>
+                        <td class="align-middle">
+                            <ul style="list-style-type:none">
+                                @foreach(var item in order.OrderItems)
+                                {
+                                    <li>
+                                        <div class="alert-info" role="alert">
+                                            <span class="badge badge-success">@item.Amount</span> [$@item.Price] - @item.Movie.Name
+                                        </div>
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                        <td class="align-middle">
+                            $@order.OrderItems.Select(m=>m.Movie.Price*m.Amount).Sum().ToString()
+                        </td>
+                        <td class="align-middle">-</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

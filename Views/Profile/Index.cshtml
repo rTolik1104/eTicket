@@ -1,0 +1,36 @@
+﻿@model ProfileListVM
+
+<div class="container">
+    <div class="sectionHeader">
+        <div class="sectionheading">
+            Browser Users
+        </div>
+    </div>
+    <div class="row forumIndexContent">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Username</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Member scince</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.Profiles)
+                {
+                    <tr>
+                        <td>
+                            @user.UserName
+                        </td>
+                        <td>
+                            @user.Email
+                        </td>
+                        <td>
+                            @user.MemberScine
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
